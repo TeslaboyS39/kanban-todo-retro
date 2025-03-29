@@ -124,16 +124,20 @@ body {
     background-color: #008080;
     color: #ffffff;
     border: 2px solid #000080;
-    padding: 5px 10px;
+    padding: 5px 10px 5px 30px; /* Tambah padding kiri untuk ikon */
     font-family: 'VCR OSD Mono', monospace;
     cursor: pointer;
-    margin: 0 10px; /* Jarak antar tombol */
+    margin: 0 5px 10px 5px;
     display: inline-block;
+    position: relative;
 }
 .theme-windows95 .add-task-btn {
     background: #008080 url('assets/add-icon.png') no-repeat 5px center;
     background-size: 20px 20px;
-    padding: 5px 10px 5px 30px;
+}
+.theme-windows95 .export-btn {
+    background: #008080 url('assets/export-icon.png') no-repeat 5px center; /* Tambah ikon */
+    background-size: 20px 20px;
 }
 .theme-windows95 .board {
     display: flex;
@@ -309,16 +313,20 @@ body {
     background-color: #000000;
     color: #00ff00;
     border: 2px solid #00ff00;
-    padding: 5px 10px;
+    padding: 5px 10px 5px 30px; /* Tambah padding kiri untuk ikon */
     font-family: 'VCR OSD Mono', monospace;
     cursor: pointer;
-    margin: 0 10px;
+    margin: 0 5px 10px 5px;
     display: inline-block;
+    position: relative;
 }
 .theme-dos .add-task-btn {
     background: #000000 url('assets/add-icon.png') no-repeat 5px center;
     background-size: 20px 20px;
-    padding: 5px 10px 5px 30px;
+}
+.theme-dos .export-btn {
+    background: #000000 url('assets/export-icon.png') no-repeat 5px center; /* Tambah ikon */
+    background-size: 20px 20px;
 }
 .theme-dos .board {
     display: flex;
@@ -480,16 +488,20 @@ body {
     background-color: #000080;
     color: #ffffff;
     border: 2px solid #ffffff;
-    padding: 5px 10px;
+    padding: 5px 10px 5px 30px; /* Tambah padding kiri untuk ikon */
     font-family: 'VCR OSD Mono', monospace;
     cursor: pointer;
-    margin: 0 10px;
+    margin: 0 5px 10px 5px;
     display: inline-block;
+    position: relative;
 }
 .theme-vga .add-task-btn {
     background: #000080 url('assets/add-icon.png') no-repeat 5px center;
     background-size: 20px 20px;
-    padding: 5px 10px 5px 30px;
+}
+.theme-vga .export-btn {
+    background: #000080 url('assets/export-icon.png') no-repeat 5px center; /* Tambah ikon */
+    background-size: 20px 20px;
 }
 .theme-vga .board {
     display: flex;
