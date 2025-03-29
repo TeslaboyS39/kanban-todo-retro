@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1743013642119,
+    "title": "rekap keuangan bulan maret",
+    "description": "-update ambil duit mingguan mamah\n-update spending minggu lalu",
+    "urgency": "high",
+    "category": "Personal Finance",
+    "deadline": "2025-03-27",
+    "status": "completed",
+    "completedAt": "2025-03-29T04:08:56.748Z"
+  },
+  {
+    "id": 1743013751367,
+    "title": "Contact HR Elistec",
+    "description": "kontak bu yessy mintain potongan slip gaji, format nanyanya ikutin daniel",
+    "urgency": "middle",
+    "category": "Tax",
+    "deadline": "2025-03-28",
+    "status": "inprogress"
+  }
+]

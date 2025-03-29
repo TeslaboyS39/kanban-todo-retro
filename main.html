@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kanban Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="menu-bar">
+        <div class="menu-item" onclick="showSection('kanban')">Kanban Tracker</div>
+        <div class="menu-item" onclick="showSection('stats')">Statistics</div>
+        <div class="user-menu">
+            <span id="username-display"></span>
+            <div class="dropdown" id="dropdown">
+                <button onclick="signOut()">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="kanban-section" class="section">
+        <h1>Kanban Tracker</h1>
+        <button class="add-task-btn" onclick="openTaskModal()">Add Task</button>
+        <div class="board">
+            <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2>To-Do</h2>
+                <div class="task-list"></div> <!-- New scrollable container -->
+            </div>
+            <div class="column" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2>In Progress</h2> <!-- Fixed to "In Progress" -->
+                <div class="task-list"></div>
+            </div>
+            <div class="column" id="completed" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2>Completed</h2>
+                <div class="task-list"></div>
+            </div>
+            <div class="column" id="halt" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2>Halted/Failed</h2> <!-- Fixed to "Halted/Failed" -->
+                <div class="task-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <h2>Create New Task</h2>
+            <input type="text" id="title" placeholder="Task Title">
+            <textarea id="description" placeholder="Description"></textarea>
+            <select id="urgency">
+                <option value="low">Low</option>
+                <option value="middle">Middle</option>
+                <option value="high">High</option>
+            </select>
+            <input type="text" id="category" placeholder="Category">
+            <input type="date" id="deadline">
+            <button onclick="addTask()">Add Task</button>
+            <button onclick="closeTaskModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div id="edit-task-modal" class="modal">
+        <div class="modal-content">
+            <h2>Edit Task</h2>
+            <input type="text" id="edit-title" placeholder="Task Title">
+            <textarea id="edit-description" placeholder="Description"></textarea>
+            <select id="edit-urgency">
+                <option value="low">Low</option>
+                <option value="middle">Middle</option>
+                <option value="high">High</option>
+            </select>
+            <input type="text" id="edit-category" placeholder="Category">
+            <input type="date" id="edit-deadline">
+            <button onclick="saveEditedTask()">Save</button>
+            <button onclick="closeEditTaskModal()">Cancel</button>
+        </div>
+    </div>
+
+    <div id="stats-section" class="section" style="display: none;">
+        <h1>Statistics Dashboard</h1>
+        <div class="stats-container">
+            <div class="chart-box">
+                <h2>Task Status</h2>
+                <canvas id="statusChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h2>Task Categories</h2>
+                <canvas id="categoryChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h2>Tasks by Status (Last 3 Months)</h2>
+                <select id="status-filter" onchange="loadStats()">
+                    <option value="completed">Completed</option>
+                    <option value="inprogress">In Progress</option>
+                    <option value="halt">Halted/Failed</option>
+                </select>
+                <canvas id="completedChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

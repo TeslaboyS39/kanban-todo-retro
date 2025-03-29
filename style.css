@@ -1,0 +1,141 @@
+body {
+    background-color: #c0c0c0;
+    font-family: "Courier New", monospace;
+    color: #000080;
+    margin: 0;
+}
+.menu-bar {
+    background-color: #008080;
+    color: #ffffff;
+    display: flex;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+}
+.menu-item {
+    padding: 5px 15px;
+    cursor: pointer;
+}
+.menu-item:hover {
+    background-color: #000080;
+}
+.user-menu {
+    margin-left: auto;
+    position: relative;
+}
+.user-menu:hover .dropdown {
+    display: block;
+}
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    border: 2px solid #000080;
+    padding: 5px;
+}
+.section {
+    padding: 20px;
+}
+.add-task-btn {
+    background-color: #008080;
+    color: #ffffff;
+    border: 2px solid #000080;
+    padding: 5px 10px;
+    font-family: "Courier New", monospace;
+    cursor: pointer;
+    margin: 0 auto 10px auto;
+    display: block;
+}
+.board {
+    display: flex;
+    justify-content: space-around;
+}
+.column {
+    width: 22%;
+    background-color: #ffffff;
+    border: 2px solid #000080;
+    padding: 10px;
+}
+.task-list {
+    height: 400px; /* Fixed height for scrolling */
+    overflow-y: auto; /* Scrollbar for tasks */
+}
+.card {
+    border: 1px solid #000080;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: move;
+}
+.card.low {
+    background-color: #c9c94f;
+}
+.card.middle {
+    background-color: #4fa84f;
+}
+.card.high {
+    background-color: #a83232;
+    color: #ffffff;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+    background-color: #ffffff;
+    border: 2px solid #000080;
+    padding: 20px;
+    width: 300px;
+    margin: 15% auto;
+    text-align: center;
+}
+.modal-content input, .modal-content textarea, .modal-content select {
+    width: 90%;
+    margin: 5px 0;
+    padding: 5px;
+    border: 2px solid #000080;
+    font-family: "Courier New", monospace;
+}
+.modal-content button {
+    background-color: #008080;
+    color: #ffffff;
+    border: 2px solid #000080;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+/* Statistics Styles */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.chart-box {
+    background-color: #ffffff;
+    border: 2px solid #000080;
+    padding: 20px;
+    width: 30%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#status-filter {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 2px solid #000080;
+    background-color: #ffffff;
+    font-family: "Courier New", monospace;
+    color: #000080;
+}
+canvas {
+    max-width: 100%;
+    max-height: 250px;
+}
