@@ -1,13 +1,20 @@
+@font-face {
+    font-family: 'VCR OSD Mono';
+    src: url('assets/VCR_OSD_Mono.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     margin: 0;
-    font-family: "Courier New", monospace; /* Default, overridden by themes */
+    font-family: 'VCR OSD Mono', monospace; /* Default font for the entire app */
 }
 
 /* Windows 95 Theme (default) */
 .theme-windows95 {
     background-color: #c0c0c0;
     color: #000080;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
 }
 .theme-windows95 .menu-bar {
     background-color: #008080;
@@ -16,7 +23,7 @@ body {
     padding: 10px;
     position: sticky;
     top: 0;
-    align-items: center; /* Center items vertically */
+    align-items: center;
 }
 .theme-windows95 .menu-item {
     padding: 5px 15px;
@@ -27,7 +34,7 @@ body {
 }
 .theme-windows95 .theme-label {
     color: #ffffff;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
     margin: 0 5px;
 }
 .theme-windows95 .user-menu {
@@ -48,15 +55,24 @@ body {
 .theme-windows95 .section {
     padding: 20px;
 }
+.theme-windows95 .button-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
 .theme-windows95 .add-task-btn, .theme-windows95 .export-btn {
     background-color: #008080;
     color: #ffffff;
     border: 2px solid #000080;
     padding: 5px 10px;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
     cursor: pointer;
-    margin: 0 5px 10px 5px;
+    margin: 0 10px; /* Jarak antar tombol */
     display: inline-block;
+}
+.theme-windows95 .add-task-btn {
+    background: #008080 url('assets/add-icon.png') no-repeat 5px center;
+    background-size: 20px 20px;
+    padding: 5px 10px 5px 30px;
 }
 .theme-windows95 .board {
     display: flex;
@@ -67,6 +83,9 @@ body {
     background-color: #ffffff;
     border: 2px solid #000080;
     padding: 10px;
+}
+.theme-windows95 .column h3 {
+    text-align: center; /* Memusatkan judul kolom */
 }
 .theme-windows95 .task-list {
     height: 400px;
@@ -112,7 +131,7 @@ body {
     margin: 5px 0;
     padding: 5px;
     border: 2px solid #000080;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
 }
 .theme-windows95 .modal-content button {
     background-color: #008080;
@@ -141,7 +160,7 @@ body {
     margin-bottom: 10px;
     border: 2px solid #000080;
     background-color: #ffffff;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
     color: #000080;
 }
 .theme-windows95 #theme-selector {
@@ -150,7 +169,7 @@ body {
     margin: 0 10px;
     border: 2px solid #000080;
     background-color: #ffffff;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
     color: #000080;
 }
 .theme-windows95 canvas {
@@ -162,7 +181,7 @@ body {
 .theme-dos {
     background-color: #000000;
     color: #00ff00;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
 }
 .theme-dos .menu-bar {
     background-color: #000000;
@@ -184,7 +203,7 @@ body {
 }
 .theme-dos .theme-label {
     color: #00ff00;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
     margin: 0 5px;
 }
 .theme-dos .user-menu {
@@ -206,15 +225,39 @@ body {
 .theme-dos .section {
     padding: 20px;
 }
+.theme-dos .section input,
+.theme-dos .section button {
+    width: 90%;
+    margin: 5px auto;
+    padding: 5px;
+    border: 2px solid #00ff00;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'VCR OSD Mono', monospace;
+    display: block;
+}
+.theme-dos .section button {
+    background-color: #000000;
+    cursor: pointer;
+}
+.theme-dos .button-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
 .theme-dos .add-task-btn, .theme-dos .export-btn {
     background-color: #000000;
     color: #00ff00;
     border: 2px solid #00ff00;
     padding: 5px 10px;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
     cursor: pointer;
-    margin: 0 5px 10px 5px;
+    margin: 0 10px;
     display: inline-block;
+}
+.theme-dos .add-task-btn {
+    background: #000000 url('assets/add-icon.png') no-repeat 5px center;
+    background-size: 20px 20px;
+    padding: 5px 10px 5px 30px;
 }
 .theme-dos .board {
     display: flex;
@@ -225,6 +268,9 @@ body {
     background-color: #000000;
     border: 2px solid #00ff00;
     padding: 10px;
+}
+.theme-dos .column h3 {
+    text-align: center; /* Memusatkan judul kolom */
 }
 .theme-dos .task-list {
     height: 400px;
@@ -272,7 +318,7 @@ body {
     border: 2px solid #00ff00;
     background-color: #000000;
     color: #00ff00;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
 }
 .theme-dos .modal-content button {
     background-color: #000000;
@@ -303,7 +349,7 @@ body {
     border: 2px solid #00ff00;
     background-color: #000000;
     color: #00ff00;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
 }
 .theme-dos #theme-selector {
     width: 120px;
@@ -312,7 +358,7 @@ body {
     border: 2px solid #00ff00;
     background-color: #000000;
     color: #00ff00;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
 }
 .theme-dos canvas {
     max-width: 100%;
@@ -323,7 +369,7 @@ body {
 .theme-vga {
     background-color: #000000;
     color: #ffffff;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
 }
 .theme-vga .menu-bar {
     background-color: #000080;
@@ -343,7 +389,7 @@ body {
 }
 .theme-vga .theme-label {
     color: #ffffff;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
     margin: 0 5px;
 }
 .theme-vga .user-menu {
@@ -365,15 +411,24 @@ body {
 .theme-vga .section {
     padding: 20px;
 }
+.theme-vga .button-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
 .theme-vga .add-task-btn, .theme-vga .export-btn {
     background-color: #000080;
     color: #ffffff;
     border: 2px solid #ffffff;
     padding: 5px 10px;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
     cursor: pointer;
-    margin: 0 5px 10px 5px;
+    margin: 0 10px;
     display: inline-block;
+}
+.theme-vga .add-task-btn {
+    background: #000080 url('assets/add-icon.png') no-repeat 5px center;
+    background-size: 20px 20px;
+    padding: 5px 10px 5px 30px;
 }
 .theme-vga .board {
     display: flex;
@@ -384,6 +439,9 @@ body {
     background-color: #000000;
     border: 2px solid #ffffff;
     padding: 10px;
+}
+.theme-vga .column h3 {
+    text-align: center; /* Memusatkan judul kolom */
 }
 .theme-vga .task-list {
     height: 400px;
@@ -431,7 +489,7 @@ body {
     border: 2px solid #ffffff;
     background-color: #000000;
     color: #ffffff;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
 }
 .theme-vga .modal-content button {
     background-color: #000080;
@@ -462,7 +520,7 @@ body {
     border: 2px solid #ffffff;
     background-color: #000000;
     color: #ffffff;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
 }
 .theme-vga #theme-selector {
     width: 120px;
@@ -471,9 +529,52 @@ body {
     border: 2px solid #ffffff;
     background-color: #000000;
     color: #ffffff;
-    font-family: "Courier New", monospace;
+    font-family: 'VCR OSD Mono', monospace;
 }
 .theme-vga canvas {
     max-width: 100%;
     max-height: 250px;
+}
+
+/* Floppy Disk Animation */
+.floppy-disk {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: url('assets/floppy-disk.png') no-repeat center center;
+    background-size: contain;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Boot Sequence (for login page) */
+.boot-sequence {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'VCR OSD Mono', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.boot-sequence pre {
+    white-space: pre-wrap;
+    text-align: left;
+    font-size: 16px;
 }

@@ -6,9 +6,9 @@
     "urgency": "low",
     "category": "aaabbb",
     "deadline": "2025-03-27",
-    "status": "completed",
+    "status": "inprogress",
     "completedAt": "2025-03-26T19:32:30.743Z",
-    "statusChangedAt": "2025-03-29T05:52:27.009Z"
+    "statusChangedAt": "2025-03-29T07:25:39.376Z"
   },
   {
     "id": 1743013905848,
@@ -17,9 +17,9 @@
     "urgency": "middle",
     "category": "bbbccc",
     "deadline": "2025-03-28",
-    "status": "completed",
+    "status": "halt",
     "completedAt": "2025-03-26T19:32:35.399Z",
-    "statusChangedAt": "2025-03-29T06:01:00.265Z"
+    "statusChangedAt": "2025-03-29T07:33:45.010Z"
   },
   {
     "id": 1743013921215,
@@ -28,9 +28,9 @@
     "urgency": "high",
     "category": "cccddd",
     "deadline": "2025-03-29",
-    "status": "inprogress",
+    "status": "completed",
     "completedAt": "2025-03-26T19:32:38.054Z",
-    "statusChangedAt": "2025-03-29T06:24:43.009Z"
+    "statusChangedAt": "2025-03-29T07:25:31.221Z"
   },
   {
     "id": 1743226127994,
@@ -39,9 +39,9 @@
     "urgency": "middle",
     "category": "dddeee",
     "deadline": "2025-04-03",
-    "status": "inprogress",
+    "status": "completed",
     "createdAt": "2025-03-29T05:28:47.994Z",
-    "statusChangedAt": "2025-03-29T05:52:34.904Z",
+    "statusChangedAt": "2025-03-29T07:25:32.544Z",
     "completedAt": "2025-03-29T05:28:50.338Z"
   }
 ]

@@ -4,11 +4,25 @@ const path = require('path');
 const app = express();
 
 app.use(express.json());
-app.use(express.static('.'));
+app.use(express.static(path.join(__dirname, 'assets'))); // Serve only the assets folder
+app.use(express.static(path.join(__dirname))); // Serve other static files (HTML, CSS, JS)
 
 const TASKS_DIR = path.join(__dirname, 'tasks');
 const USERS_DIR = path.join(__dirname, 'users');
 let currentUser = null;
+
+// Ensure directories exist
+async function ensureDirectories() {
+    try {
+        await fs.mkdir(TASKS_DIR, { recursive: true });
+        await fs.mkdir(USERS_DIR, { recursive: true });
+    } catch (err) {
+        console.error('Error creating directories:', err);
+    }
+}
+
+// Call this when the server starts
+ensureDirectories();
 
 app.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;

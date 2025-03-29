@@ -218,7 +218,23 @@ function drop(e) {
 }
 
 function exportTasks() {
-    window.location.href = `/export-tasks?username=${currentUser}`;
+    const floppy = document.getElementById("floppy-disk");
+    floppy.style.display = "block";
+    fetch(`/export-tasks?username=${currentUser}`)
+    .then(response => {
+        setTimeout(() => {
+            floppy.style.display = "none";
+            if (response.ok) {
+                window.location.href = `/export-tasks?username=${currentUser}`;
+            } else {
+                alert("Error exporting tasks");
+            }
+        }, 2000); // Simulate a 2-second save animation
+    })
+    .catch(() => {
+        floppy.style.display = "none";
+        alert("Error exporting tasks");
+    });
 }
 
 function changeTheme() {
