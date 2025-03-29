@@ -17,9 +17,9 @@
     "urgency": "middle",
     "category": "bbbccc",
     "deadline": "2025-03-28",
-    "status": "halt",
+    "status": "completed",
     "completedAt": "2025-03-26T19:32:35.399Z",
-    "statusChangedAt": "2025-03-29T07:33:45.010Z"
+    "statusChangedAt": "2025-03-29T08:00:02.593Z"
   },
   {
     "id": 1743013921215,
@@ -39,9 +39,9 @@
     "urgency": "middle",
     "category": "dddeee",
     "deadline": "2025-04-03",
-    "status": "completed",
+    "status": "halt",
     "createdAt": "2025-03-29T05:28:47.994Z",
-    "statusChangedAt": "2025-03-29T07:25:32.544Z",
+    "statusChangedAt": "2025-03-29T07:57:52.148Z",
     "completedAt": "2025-03-29T05:28:50.338Z"
   }
 ]

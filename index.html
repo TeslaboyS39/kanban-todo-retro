@@ -2,24 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign In - Kanban Tracker</title>
+    <title>Kanban Tracker - Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="signin-container">
-        <h1>Kanban Tracker</h1>
-        <div class="form-box">
-            <h2>Sign In</h2>
-            <input type="text" id="login-username" placeholder="Username or Email">
-            <input type="password" id="login-password" placeholder="Password">
-            <button onclick="signIn()">Sign In</button>
-        </div>
-        <div class="form-box">
-            <h2>Sign Up</h2>
-            <input type="text" id="signup-username" placeholder="Username">
-            <input type="email" id="signup-email" placeholder="Email">
-            <input type="password" id="signup-password" placeholder="Password">
-            <button onclick="signUp()">Sign Up</button>
+<body class="theme-dos">
+    <div id="boot-sequence" class="boot-sequence">
+        <pre id="boot-text"></pre>
+    </div>
+    <div id="login-section" class="section" style="display: none;">
+        <div class="login-container">
+            <h1>Kanban Tracker</h1>
+            <div class="login-box">
+                <h2>Sign In</h2>
+                <input type="text" id="login-username" placeholder="Username">
+                <input type="password" id="login-password" placeholder="Password">
+                <button onclick="signIn()">Sign In</button>
+            </div>
+            <div class="signup-box">
+                <h2>Sign Up</h2>
+                <input type="text" id="signup-username" placeholder="Username">
+                <input type="email" id="signup-email" placeholder="Email">
+                <input type="password" id="signup-password" placeholder="Password">
+                <button onclick="signUp()">Sign Up</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

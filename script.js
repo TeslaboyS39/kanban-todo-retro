@@ -45,6 +45,39 @@ function signOut() {
     window.location.href = "index.html";
 }
 
+if (window.location.pathname.includes("index.html")) {
+    // Simulate a boot sequence on the login page
+    const bootText = document.getElementById("boot-text");
+    const loginSection = document.getElementById("login-section");
+    const bootSequence = [
+        "Initializing System...\n",
+        "BIOS Version 1.0.0\n",
+        "Memory Check: 640KB OK\n",
+        "Loading OS...\n",
+        "Checking Hardware...\n",
+        "CPU: 486DX 33MHz\n",
+        "Floppy Drive: A: OK\n",
+        "Hard Drive: C: OK\n",
+        "Starting Kanban OS...\n",
+        "System Ready.\n"
+    ];
+
+    let currentLine = 0;
+    function displayBootSequence() {
+        if (currentLine < bootSequence.length) {
+            bootText.textContent += bootSequence[currentLine];
+            currentLine++;
+            setTimeout(displayBootSequence, 300); // Display each line with a 300ms delay
+        } else {
+            setTimeout(() => {
+                document.getElementById("boot-sequence").style.display = "none";
+                loginSection.style.display = "block";
+            }, 500); // Wait 500ms before showing the login form
+        }
+    }
+    displayBootSequence();
+}
+
 if (window.location.pathname.includes("main.html")) {
     fetch('/get-current-user')
     .then(response => response.json())

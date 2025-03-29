@@ -1,3 +1,64 @@
+/* Tambahkan di bagian atas style.css */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Memusatkan secara vertikal */
+    text-align: center;
+}
+
+.login-box, .signup-box {
+    background-color: #000000;
+    border: 2px solid #00ff00;
+    padding: 20px;
+    margin: 20px 0;
+    width: 300px;
+    box-shadow: 0 0 10px #00ff00; /* Efek glow retro */
+}
+
+/* Perbarui gaya untuk theme-dos */
+.theme-dos .section h1 {
+    color: #00ff00;
+    font-family: 'VCR OSD Mono', monospace;
+    margin-bottom: 20px;
+}
+
+.theme-dos .section h2 {
+    color: #00ff00;
+    font-family: 'VCR OSD Mono', monospace;
+    margin-bottom: 10px;
+}
+
+.theme-dos .section input {
+    width: 90%;
+    margin: 5px auto;
+    padding: 5px;
+    border: 2px solid #00ff00;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'VCR OSD Mono', monospace;
+    display: block;
+}
+
+.theme-dos .section button {
+    width: 90%;
+    margin: 10px auto;
+    padding: 5px;
+    border: 2px solid #00ff00;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'VCR OSD Mono', monospace;
+    display: block;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Efek transisi untuk hover */
+}
+
+.theme-dos .section button:hover {
+    background-color: #00ff00;
+    color: #000000;
+}
+
 @font-face {
     font-family: 'VCR OSD Mono';
     src: url('assets/VCR_OSD_Mono.ttf') format('truetype');
