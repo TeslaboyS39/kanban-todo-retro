@@ -30,7 +30,7 @@
     "deadline": "2025-03-29",
     "status": "inprogress",
     "completedAt": "2025-03-26T19:32:38.054Z",
-    "statusChangedAt": "2025-03-29T05:52:33.042Z"
+    "statusChangedAt": "2025-03-29T06:24:43.009Z"
   },
   {
     "id": 1743226127994,

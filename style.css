@@ -1,32 +1,43 @@
 body {
-    background-color: #c0c0c0;
-    font-family: "Courier New", monospace;
-    color: #000080;
     margin: 0;
+    font-family: "Courier New", monospace; /* Default, overridden by themes */
 }
-.menu-bar {
+
+/* Windows 95 Theme (default) */
+.theme-windows95 {
+    background-color: #c0c0c0;
+    color: #000080;
+    font-family: "Courier New", monospace;
+}
+.theme-windows95 .menu-bar {
     background-color: #008080;
     color: #ffffff;
     display: flex;
     padding: 10px;
     position: sticky;
     top: 0;
+    align-items: center; /* Center items vertically */
 }
-.menu-item {
+.theme-windows95 .menu-item {
     padding: 5px 15px;
     cursor: pointer;
 }
-.menu-item:hover {
+.theme-windows95 .menu-item:hover {
     background-color: #000080;
 }
-.user-menu {
+.theme-windows95 .theme-label {
+    color: #ffffff;
+    font-family: "Courier New", monospace;
+    margin: 0 5px;
+}
+.theme-windows95 .user-menu {
     margin-left: auto;
     position: relative;
 }
-.user-menu:hover .dropdown {
+.theme-windows95 .user-menu:hover .dropdown {
     display: block;
 }
-.dropdown {
+.theme-windows95 .dropdown {
     display: none;
     position: absolute;
     right: 0;
@@ -34,10 +45,10 @@ body {
     border: 2px solid #000080;
     padding: 5px;
 }
-.section {
+.theme-windows95 .section {
     padding: 20px;
 }
-.add-task-btn, .export-btn {
+.theme-windows95 .add-task-btn, .theme-windows95 .export-btn {
     background-color: #008080;
     color: #ffffff;
     border: 2px solid #000080;
@@ -47,37 +58,37 @@ body {
     margin: 0 5px 10px 5px;
     display: inline-block;
 }
-.board {
+.theme-windows95 .board {
     display: flex;
     justify-content: space-around;
 }
-.column {
+.theme-windows95 .column {
     width: 22%;
     background-color: #ffffff;
     border: 2px solid #000080;
     padding: 10px;
 }
-.task-list {
+.theme-windows95 .task-list {
     height: 400px;
     overflow-y: auto;
 }
-.card {
+.theme-windows95 .card {
     border: 1px solid #000080;
     padding: 10px;
     margin: 5px 0;
     cursor: move;
 }
-.card.low {
+.theme-windows95 .card.low {
     background-color: #c9c94f;
 }
-.card.middle {
+.theme-windows95 .card.middle {
     background-color: #4fa84f;
 }
-.card.high {
+.theme-windows95 .card.high {
     background-color: #a83232;
     color: #ffffff;
 }
-.modal {
+.theme-windows95 .modal {
     display: none;
     position: fixed;
     top: 0;
@@ -86,7 +97,7 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
-.modal-content {
+.theme-windows95 .modal-content {
     background-color: #ffffff;
     border: 2px solid #000080;
     padding: 20px;
@@ -94,14 +105,16 @@ body {
     margin: 15% auto;
     text-align: center;
 }
-.modal-content input, .modal-content textarea, .modal-content select {
+.theme-windows95 .modal-content input, 
+.theme-windows95 .modal-content textarea, 
+.theme-windows95 .modal-content select {
     width: 90%;
     margin: 5px 0;
     padding: 5px;
     border: 2px solid #000080;
     font-family: "Courier New", monospace;
 }
-.modal-content button {
+.theme-windows95 .modal-content button {
     background-color: #008080;
     color: #ffffff;
     border: 2px solid #000080;
@@ -109,12 +122,12 @@ body {
     margin: 5px;
     cursor: pointer;
 }
-.stats-container {
+.theme-windows95 .stats-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
-.chart-box {
+.theme-windows95 .chart-box {
     background-color: #ffffff;
     border: 2px solid #000080;
     padding: 20px;
@@ -122,7 +135,7 @@ body {
     text-align: center;
     margin-bottom: 20px;
 }
-#status-filter {
+.theme-windows95 #status-filter {
     width: 100%;
     padding: 5px;
     margin-bottom: 10px;
@@ -131,7 +144,336 @@ body {
     font-family: "Courier New", monospace;
     color: #000080;
 }
-canvas {
+.theme-windows95 #theme-selector {
+    width: 120px;
+    padding: 5px;
+    margin: 0 10px;
+    border: 2px solid #000080;
+    background-color: #ffffff;
+    font-family: "Courier New", monospace;
+    color: #000080;
+}
+.theme-windows95 canvas {
+    max-width: 100%;
+    max-height: 250px;
+}
+
+/* DOS Theme */
+.theme-dos {
+    background-color: #000000;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+}
+.theme-dos .menu-bar {
+    background-color: #000000;
+    color: #00ff00;
+    display: flex;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    border-bottom: 2px solid #00ff00;
+    align-items: center;
+}
+.theme-dos .menu-item {
+    padding: 5px 15px;
+    cursor: pointer;
+}
+.theme-dos .menu-item:hover {
+    background-color: #00ff00;
+    color: #000000;
+}
+.theme-dos .theme-label {
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+    margin: 0 5px;
+}
+.theme-dos .user-menu {
+    margin-left: auto;
+    position: relative;
+}
+.theme-dos .user-menu:hover .dropdown {
+    display: block;
+}
+.theme-dos .dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #000000;
+    border: 2px solid #00ff00;
+    padding: 5px;
+    color: #00ff00;
+}
+.theme-dos .section {
+    padding: 20px;
+}
+.theme-dos .add-task-btn, .theme-dos .export-btn {
+    background-color: #000000;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    padding: 5px 10px;
+    font-family: "Courier New", monospace;
+    cursor: pointer;
+    margin: 0 5px 10px 5px;
+    display: inline-block;
+}
+.theme-dos .board {
+    display: flex;
+    justify-content: space-around;
+}
+.theme-dos .column {
+    width: 22%;
+    background-color: #000000;
+    border: 2px solid #00ff00;
+    padding: 10px;
+}
+.theme-dos .task-list {
+    height: 400px;
+    overflow-y: auto;
+}
+.theme-dos .card {
+    border: 1px solid #00ff00;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: move;
+}
+.theme-dos .card.low {
+    background-color: #003300;
+}
+.theme-dos .card.middle {
+    background-color: #006600;
+}
+.theme-dos .card.high {
+    background-color: #009900;
+}
+.theme-dos .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.theme-dos .modal-content {
+    background-color: #000000;
+    border: 2px solid #00ff00;
+    padding: 20px;
+    width: 300px;
+    margin: 15% auto;
+    text-align: center;
+    color: #00ff00;
+}
+.theme-dos .modal-content input, 
+.theme-dos .modal-content textarea, 
+.theme-dos .modal-content select {
+    width: 90%;
+    margin: 5px 0;
+    padding: 5px;
+    border: 2px solid #00ff00;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+}
+.theme-dos .modal-content button {
+    background-color: #000000;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+.theme-dos .stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.theme-dos .chart-box {
+    background-color: #000000;
+    border: 2px solid #00ff00;
+    padding: 20px;
+    width: 30%;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00ff00;
+}
+.theme-dos #status-filter {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 2px solid #00ff00;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+}
+.theme-dos #theme-selector {
+    width: 120px;
+    padding: 5px;
+    margin: 0 10px;
+    border: 2px solid #00ff00;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+}
+.theme-dos canvas {
+    max-width: 100%;
+    max-height: 250px;
+}
+
+/* VGA Theme */
+.theme-vga {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: "Courier New", monospace;
+}
+.theme-vga .menu-bar {
+    background-color: #000080;
+    color: #ffffff;
+    display: flex;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    align-items: center;
+}
+.theme-vga .menu-item {
+    padding: 5px 15px;
+    cursor: pointer;
+}
+.theme-vga .menu-item:hover {
+    background-color: #0000ff;
+}
+.theme-vga .theme-label {
+    color: #ffffff;
+    font-family: "Courier New", monospace;
+    margin: 0 5px;
+}
+.theme-vga .user-menu {
+    margin-left: auto;
+    position: relative;
+}
+.theme-vga .user-menu:hover .dropdown {
+    display: block;
+}
+.theme-vga .dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #000000;
+    border: 2px solid #ffffff;
+    padding: 5px;
+    color: #ffffff;
+}
+.theme-vga .section {
+    padding: 20px;
+}
+.theme-vga .add-task-btn, .theme-vga .export-btn {
+    background-color: #000080;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 5px 10px;
+    font-family: "Courier New", monospace;
+    cursor: pointer;
+    margin: 0 5px 10px 5px;
+    display: inline-block;
+}
+.theme-vga .board {
+    display: flex;
+    justify-content: space-around;
+}
+.theme-vga .column {
+    width: 22%;
+    background-color: #000000;
+    border: 2px solid #ffffff;
+    padding: 10px;
+}
+.theme-vga .task-list {
+    height: 400px;
+    overflow-y: auto;
+}
+.theme-vga .card {
+    border: 1px solid #ffffff;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: move;
+}
+.theme-vga .card.low {
+    background-color: #00ffff; /* Cyan */
+}
+.theme-vga .card.middle {
+    background-color: #00ff00; /* Green */
+}
+.theme-vga .card.high {
+    background-color: #ff0000; /* Red */
+}
+.theme-vga .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.theme-vga .modal-content {
+    background-color: #000000;
+    border: 2px solid #ffffff;
+    padding: 20px;
+    width: 300px;
+    margin: 15% auto;
+    text-align: center;
+    color: #ffffff;
+}
+.theme-vga .modal-content input, 
+.theme-vga .modal-content textarea, 
+.theme-vga .modal-content select {
+    width: 90%;
+    margin: 5px 0;
+    padding: 5px;
+    border: 2px solid #ffffff;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: "Courier New", monospace;
+}
+.theme-vga .modal-content button {
+    background-color: #000080;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+.theme-vga .stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.theme-vga .chart-box {
+    background-color: #000000;
+    border: 2px solid #ffffff;
+    padding: 20px;
+    width: 30%;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+.theme-vga #status-filter {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 2px solid #ffffff;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: "Courier New", monospace;
+}
+.theme-vga #theme-selector {
+    width: 120px;
+    padding: 5px;
+    margin: 0 10px;
+    border: 2px solid #ffffff;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: "Courier New", monospace;
+}
+.theme-vga canvas {
     max-width: 100%;
     max-height: 250px;
 }

@@ -221,6 +221,11 @@ function exportTasks() {
     window.location.href = `/export-tasks?username=${currentUser}`;
 }
 
+function changeTheme() {
+    const theme = document.getElementById("theme-selector").value;
+    document.body.className = theme;
+}
+
 function loadStats() {
     fetch(`/load-tasks?username=${currentUser}`)
     .then(response => response.json())
