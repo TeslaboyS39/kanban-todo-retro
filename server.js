@@ -59,7 +59,7 @@ app.post('/save-task', async (req, res) => {
     const filePath = path.join(TASKS_DIR, `${username}_tasks.txt`);
     try {
         const tasks = JSON.parse(await fs.readFile(filePath));
-        task.statusChangedAt = task.createdAt; // Set initial status change to creation
+        task.statusChangedAt = task.createdAt;
         tasks.push(task);
         await fs.writeFile(filePath, JSON.stringify(tasks, null, 2));
         res.json({ success: true });
@@ -87,9 +87,9 @@ app.post('/update-task', async (req, res) => {
         const task = tasks.find(t => t.id == id);
         if (task) {
             task.status = status;
-            task.statusChangedAt = new Date().toISOString(); // Update status change timestamp for all statuses
+            task.statusChangedAt = new Date().toISOString();
             if (status === "completed" && !task.completedAt) {
-                task.completedAt = task.statusChangedAt; // Set completedAt only for completed tasks
+                task.completedAt = task.statusChangedAt;
             }
             await fs.writeFile(filePath, JSON.stringify(tasks, null, 2));
             res.json({ success: true });
@@ -108,7 +108,7 @@ app.post('/update-task-full', async (req, res) => {
         const tasks = JSON.parse(await fs.readFile(filePath));
         const index = tasks.findIndex(t => t.id == task.id);
         if (index !== -1) {
-            tasks[index] = { ...tasks[index], ...task }; // Preserve createdAt, completedAt, statusChangedAt
+            tasks[index] = { ...tasks[index], ...task };
             await fs.writeFile(filePath, JSON.stringify(tasks, null, 2));
             res.json({ success: true });
         } else {
@@ -126,9 +126,22 @@ app.post('/delete-task', async (req, res) => {
         const tasks = JSON.parse(await fs.readFile(filePath));
         const updatedTasks = tasks.filter(t => t.id != id);
         await fs.writeFile(filePath, JSON.stringify(updatedTasks, null, 2));
-        res.json({ success: true }); // Fixed syntax error
+        res.json({ success: true });
     } catch (err) {
         res.json({ success: false, error: err.message });
+    }
+});
+
+app.get('/export-tasks', async (req, res) => {
+    const { username } = req.query;
+    const filePath = path.join(TASKS_DIR, `${username}_tasks.txt`);
+    try {
+        const tasks = await fs.readFile(filePath, 'utf8');
+        res.setHeader('Content-Disposition', `attachment; filename=${username}_tasks_backup.txt`);
+        res.setHeader('Content-Type', 'text/plain');
+        res.send(tasks);
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
     }
 });
 

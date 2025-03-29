@@ -2,7 +2,6 @@ let currentUser = null;
 let statusChart, categoryChart, completedChart;
 let editingTaskId = null;
 
-// Sign In / Sign Up (unchanged)
 function signIn() {
     const username = document.getElementById("login-username").value;
     const password = document.getElementById("login-password").value;
@@ -46,7 +45,6 @@ function signOut() {
     window.location.href = "index.html";
 }
 
-// Main Page Logic
 if (window.location.pathname.includes("main.html")) {
     fetch('/get-current-user')
     .then(response => response.json())
@@ -156,7 +154,7 @@ function loadTasks() {
     .then(tasks => {
         document.querySelectorAll(".column").forEach(col => {
             const taskList = col.querySelector(".task-list");
-            taskList.innerHTML = ""; // Clear only the task list
+            taskList.innerHTML = "";
         });
         tasks.forEach(task => renderTask(task));
     });
@@ -164,7 +162,7 @@ function loadTasks() {
 
 function renderTask(task) {
     const column = document.getElementById(task.status);
-    const taskList = column.querySelector(".task-list"); // Append to task-list, not column
+    const taskList = column.querySelector(".task-list");
     const card = document.createElement("div");
     card.className = `card ${task.urgency}`;
     card.draggable = true;
@@ -219,26 +217,27 @@ function drop(e) {
     });
 }
 
+function exportTasks() {
+    window.location.href = `/export-tasks?username=${currentUser}`;
+}
+
 function loadStats() {
     fetch(`/load-tasks?username=${currentUser}`)
     .then(response => response.json())
     .then(tasks => {
-        // Task Status Pie Chart
         const statusData = {
             "In Progress": tasks.filter(t => t.status === "inprogress").length,
             "Completed": tasks.filter(t => t.status === "completed").length,
             "Halted/Failed": tasks.filter(t => t.status === "halt").length
         };
 
-        // Task Categories Pie Chart
         const categoryData = tasks.reduce((acc, task) => {
             acc[task.category] = (acc[task.category] || 0) + 1;
             return acc;
         }, {});
 
-        // Tasks by Status Bar Chart (Last 3 Months)
-        const threeMonthsAgo = new Date(2025, 2, 28); // March 28, 2025
-        threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3); // Back to December 28, 2024
+        const threeMonthsAgo = new Date(2025, 2, 28);
+        threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
         const selectedStatus = document.getElementById("status-filter").value;
         const filteredTasks = tasks.filter(t => 
             t.status === selectedStatus && 

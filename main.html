@@ -21,13 +21,14 @@
     <div id="kanban-section" class="section">
         <h1>Kanban Tracker</h1>
         <button class="add-task-btn" onclick="openTaskModal()">Add Task</button>
+        <button class="export-btn" onclick="exportTasks()">Export Tasks</button>
         <div class="board">
             <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <h2>To-Do</h2>
-                <div class="task-list"></div> <!-- New scrollable container -->
+                <div class="task-list"></div>
             </div>
             <div class="column" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <h2>In Progress</h2> <!-- Fixed to "In Progress" -->
+                <h2>In Progress</h2>
                 <div class="task-list"></div>
             </div>
             <div class="column" id="completed" ondrop="drop(event)" ondragover="allowDrop(event)">
@@ -35,7 +36,7 @@
                 <div class="task-list"></div>
             </div>
             <div class="column" id="halt" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <h2>Halted/Failed</h2> <!-- Fixed to "Halted/Failed" -->
+                <h2>Halted/Failed</h2>
                 <div class="task-list"></div>
             </div>
         </div>

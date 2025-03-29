@@ -37,15 +37,15 @@ body {
 .section {
     padding: 20px;
 }
-.add-task-btn {
+.add-task-btn, .export-btn {
     background-color: #008080;
     color: #ffffff;
     border: 2px solid #000080;
     padding: 5px 10px;
     font-family: "Courier New", monospace;
     cursor: pointer;
-    margin: 0 auto 10px auto;
-    display: block;
+    margin: 0 5px 10px 5px;
+    display: inline-block;
 }
 .board {
     display: flex;
@@ -58,8 +58,8 @@ body {
     padding: 10px;
 }
 .task-list {
-    height: 400px; /* Fixed height for scrolling */
-    overflow-y: auto; /* Scrollbar for tasks */
+    height: 400px;
+    overflow-y: auto;
 }
 .card {
     border: 1px solid #000080;
@@ -77,8 +77,6 @@ body {
     background-color: #a83232;
     color: #ffffff;
 }
-
-/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -111,8 +109,6 @@ body {
     margin: 5px;
     cursor: pointer;
 }
-
-/* Statistics Styles */
 .stats-container {
     display: flex;
     justify-content: space-around;
