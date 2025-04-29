@@ -5,7 +5,7 @@ let editingTaskId = null;
 function signIn() {
     const username = document.getElementById("login-username").value;
     const password = document.getElementById("login-password").value;
-    fetch('/signin', {
+    fetch('http://localhost:3000/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -14,7 +14,8 @@ function signIn() {
     .then(data => {
         if (data.success) {
             currentUser = data.username;
-            window.location.href = "main.html";
+            localStorage.setItem("username", data.username); // Store username in localStorage
+            window.location.replace("main.html"); // Use replace for Electron
         } else {
             alert("Invalid credentials");
         }
@@ -25,7 +26,7 @@ function signUp() {
     const username = document.getElementById("signup-username").value;
     const email = document.getElementById("signup-email").value;
     const password = document.getElementById("signup-password").value;
-    fetch('/signup', {
+    fetch('http://localhost:3000/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password })
@@ -42,7 +43,8 @@ function signUp() {
 
 function signOut() {
     currentUser = null;
-    window.location.href = "index.html";
+    localStorage.removeItem("username"); // Clear username from localStorage
+    window.location.replace("index.html"); // Use replace for Electron
 }
 
 if (window.location.pathname.includes("index.html")) {
@@ -79,18 +81,15 @@ if (window.location.pathname.includes("index.html")) {
 }
 
 if (window.location.pathname.includes("main.html")) {
-    fetch('/get-current-user')
-    .then(response => response.json())
-    .then(data => {
-        if (data.username) {
-            currentUser = data.username;
-            document.getElementById("username-display").textContent = currentUser;
-            loadTasks();
-            loadStats();
-        } else {
-            window.location.href = "index.html";
-        }
-    });
+    // Check if user is logged in using localStorage
+    currentUser = localStorage.getItem("username");
+    if (currentUser) {
+        document.getElementById("username-display").textContent = currentUser;
+        loadTasks();
+        loadStats();
+    } else {
+        window.location.replace("index.html"); // Redirect to login if not logged in
+    }
 }
 
 function showSection(section) {
@@ -143,7 +142,7 @@ function addTask() {
 }
 
 function saveTask(task) {
-    fetch('/save-task', {
+    fetch('http://localhost:3000/save-task', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: currentUser, task })
@@ -166,7 +165,7 @@ function saveEditedTask() {
         category: document.getElementById("edit-category").value,
         deadline: document.getElementById("edit-deadline").value
     };
-    fetch('/update-task-full', {
+    fetch('http://localhost:3000/update-task-full', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: currentUser, task: updatedTask })
@@ -182,7 +181,7 @@ function saveEditedTask() {
 }
 
 function loadTasks() {
-    fetch(`/load-tasks?username=${currentUser}`)
+    fetch(`http://localhost:3000/load-tasks?username=${currentUser}`)
     .then(response => response.json())
     .then(tasks => {
         document.querySelectorAll(".column").forEach(col => {
@@ -214,7 +213,7 @@ function renderTask(task) {
 }
 
 function deleteTask(id) {
-    fetch('/delete-task', {
+    fetch('http://localhost:3000/delete-task', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: currentUser, id })
@@ -236,7 +235,7 @@ function drop(e) {
     e.preventDefault();
     const taskId = e.dataTransfer.getData("text");
     const newStatus = e.target.closest(".column").id;
-    fetch('/update-task', {
+    fetch('http://localhost:3000/update-task', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: currentUser, id: taskId, status: newStatus })
@@ -253,15 +252,20 @@ function drop(e) {
 function exportTasks() {
     const floppy = document.getElementById("floppy-disk");
     floppy.style.display = "block";
-    fetch(`/export-tasks?username=${currentUser}`)
-    .then(response => {
+    fetch(`http://localhost:3000/export-tasks?username=${currentUser}`)
+    .then(response => response.text())
+    .then(data => {
         setTimeout(() => {
             floppy.style.display = "none";
-            if (response.ok) {
-                window.location.href = `/export-tasks?username=${currentUser}`;
-            } else {
-                alert("Error exporting tasks");
-            }
+            const blob = new Blob([data], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${currentUser}_tasks_backup.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
         }, 2000); // Simulate a 2-second save animation
     })
     .catch(() => {
@@ -276,7 +280,7 @@ function changeTheme() {
 }
 
 function loadStats() {
-    fetch(`/load-tasks?username=${currentUser}`)
+    fetch(`http://localhost:3000/load-tasks?username=${currentUser}`)
     .then(response => response.json())
     .then(tasks => {
         const statusData = {
