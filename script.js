@@ -283,6 +283,7 @@ function loadStats() {
     fetch(`http://localhost:3000/load-tasks?username=${currentUser}`)
     .then(response => response.json())
     .then(tasks => {
+        console.log('All tasks:', tasks); // Debug: Log all tasks
         const statusData = {
             "In Progress": tasks.filter(t => t.status === "inprogress").length,
             "Completed": tasks.filter(t => t.status === "completed").length,
@@ -294,25 +295,35 @@ function loadStats() {
             return acc;
         }, {});
 
-        const threeMonthsAgo = new Date(2025, 2, 28);
-        threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+        // Use the current date instead of a hardcoded March 28, 2025
+        const currentDate = new Date(); // e.g. Today: May 3, 2025
+        const threeMonthsAgo = new Date(currentDate); // Copy current date
+        threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3); // 3 months ago: Feb 3, 2025
+        console.log('threeMonthsAgo:', threeMonthsAgo); // Debug: Log the filter date
         const selectedStatus = document.getElementById("status-filter").value;
         const filteredTasks = tasks.filter(t => 
             t.status === selectedStatus && 
             t.statusChangedAt && 
-            new Date(t.statusChangedAt) >= threeMonthsAgo
+            new Date(t.statusChangedAt).getTime() >= threeMonthsAgo.getTime()
         );
+        console.log('Filtered tasks:', filteredTasks); // Debug: Log filtered tasks
 
-        const monthlyData = {
-            "Jan 2025": 0,
-            "Feb 2025": 0,
-            "Mar 2025": 0
-        };
+        // Dynamically calculate the last 3 months
+        const monthlyData = {};
+        for (let i = 0; i < 3; i++) {
+            const monthDate = new Date(currentDate);
+            monthDate.setMonth(currentDate.getMonth() - i);
+            const monthKey = monthDate.toLocaleString('default', { month: 'short', year: 'numeric' });
+            monthlyData[monthKey] = 0;
+        }
+        console.log('Monthly data before count:', monthlyData); // Debug: Log initial monthly data
+
         filteredTasks.forEach(task => {
             const date = new Date(task.statusChangedAt);
             const monthKey = date.toLocaleString('default', { month: 'short', year: 'numeric' });
             if (monthlyData[monthKey] !== undefined) monthlyData[monthKey]++;
         });
+        console.log('Monthly data after count:', monthlyData); // Debug: Log final monthly data
 
         if (statusChart) statusChart.destroy();
         if (categoryChart) categoryChart.destroy();
@@ -356,5 +367,6 @@ function loadStats() {
                 title: { display: true, text: "Tasks by Status (Last 3 Months)", fontFamily: "Courier New" }
             }
         });
-    });
+    })
+    .catch(error => console.error('Error in loadStats:', error));
 }

@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, Menu, BrowserWindow } = require('electron');
 const path = require('path');
 const express = require('express');
 const serverApp = express();
@@ -13,15 +13,16 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true, // Allow Node.js integration in renderer process
             contextIsolation: false, // Disable context isolation for simplicity
-            enableRemoteModule: true // Enable remote module (optional, for older Electron versions)
+            enableRemoteModule: true, // Enable remote module (optional, for older Electron versions)
+            zoomFactor: 0.9
         }
     });
 
     // Load index.html as the entry point
     mainWindow.loadFile('index.html');
 
-    // Open DevTools for debugging (optional, remove in production)
-    mainWindow.webContents.openDevTools();
+    // Open DevTools for debugging (optional, removed coz in production)
+    // mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', () => {
         mainWindow = null;
@@ -40,6 +41,7 @@ function startServer() {
 app.on('ready', () => {
     startServer(); // Start the server
     createWindow(); // Create the main window
+    Menu.setApplicationMenu(null);
 });
 
 app.on('window-all-closed', () => {

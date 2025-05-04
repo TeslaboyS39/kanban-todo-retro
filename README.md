@@ -2,7 +2,7 @@
 
 ![Kanban Tracker Screenshot](screenshots/kanban-screenshot.png)
 
-A retro-styled Kanban board application built with HTML, CSS, JavaScript, and Node.js. This app allows users to manage tasks with a drag-and-drop interface, track task statuses, and visualize statistics. It features a nostalgic design inspired by classic operating systems like Windows 95, DOS, and VGA, complete with a boot sequence animation, pixelated fonts, and retro icons.
+A retro-styled Kanban board application built with Electron, HTML, CSS, JavaScript, and Node.js. This desktop app allows users to manage tasks with a drag-and-drop interface, track task statuses, and visualize statistics. It features a nostalgic design inspired by classic operating systems like Windows 95, DOS, and VGA, complete with a boot sequence animation, pixelated fonts, and retro icons.
 
 ## Features
 
@@ -41,10 +41,13 @@ A retro-styled Kanban board application built with HTML, CSS, JavaScript, and No
 2. **Install Dependencies**
     ```bash
     npm install
-3. **Start the Server**
+3. **Build the Application**
     ```bash
-    node server.js
-4. Access the App Open your browser and navigate to http://localhost:3000/index.html.
+    npm run build
+4. **Run the Application**
+    >Navigate to the dist folder (generated after build).
+    >Run the executable (e.g., Kanban Tracker 1.0.0.exe on Windows).
+    >No server startup required—everything is bundled into the executable.
 
 ## Usage
 ### 1. Sign Up or Sign In
@@ -77,25 +80,30 @@ kanban-tracker/
 ├── main.html                 # Main Kanban board and statistics page
 ├── script.js                 # Client-side JavaScript logic
 ├── style.css                 # Styles for the app
-├── server.js                 # Node.js server for user authentication and task storage
+├── server.js                 # Node.js server bundled into the Electron app
+├── main.js                   # Electron main process
+├── package.json              # Project configuration and dependencies
+├── .gitignore                # Excludes dist and node_modules
 └── README.md                 # This file
 ```
 ## Technologies Used
 ```
 >Frontend: HTML, CSS, JavaScript
->Backend: Node.js, Express.js
+>Backend: Node.js, Express.js (bundled with Electron)
+>Desktop Framework: Electron
 >Charting: Chart.js
 >Font: VCR OSD Mono
->Storage: File system (tasks and users stored as JSON files)
+>Storage: File system (tasks and users stored as JSON files locally)
 ```
 
 ## Future Improvements
 ```
->Electron App: Package the app as a desktop application using Electron.
+>Cross-Platform Support: Test and build for macOS (.dmg) and Linux (.AppImage or .deb).
 >CSV Export: Enhance the export feature to support CSV format for better compatibility.
 >CRT Effects: Add CRT scanline effects for an even more retro feel.
 >Sound Effects: Include retro sound effects (e.g., typing sounds during boot sequence, floppy disk sound during export).
->Database: Replace file-based storage with a proper database (e.g., SQLite or MongoDB) for web-based user.
+>Secure Storage: Implement encrypted storage or a database (e.g., SQLite) for user data.
+>Installer Customization: Add custom icons and metadata to the installer.
 ```
 
 ## Contributing

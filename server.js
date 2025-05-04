@@ -1,12 +1,15 @@
 const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
+const { app } = require('electron'); // Import Electron's app module to get userData path
 
 const router = express.Router();
 router.use(express.json());
 
-const TASKS_DIR = path.join(__dirname, 'tasks');
-const USERS_DIR = path.join(__dirname, 'users');
+// Use Electron's userData directory for storing user and task data
+const DATA_DIR = app ? path.join(app.getPath('userData'), 'kanban-tracker') : path.join(__dirname, 'data');
+const TASKS_DIR = path.join(DATA_DIR, 'tasks');
+const USERS_DIR = path.join(DATA_DIR, 'users');
 
 // Ensure directories exist
 async function ensureDirectories() {
@@ -143,7 +146,6 @@ router.get('/export-tasks', async (req, res) => {
     const filePath = path.join(TASKS_DIR, `${username}_tasks.txt`);
     try {
         const tasks = await fs.readFile(filePath, 'utf8');
-        // Since Electron handles the download in script.js, we just send the raw data
         res.send(tasks);
     } catch (err) {
         res.status(500).json({ success: false, error: err.message });

@@ -4,6 +4,47 @@
     <meta charset="UTF-8">
     <title>Kanban Tracker - Login</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Pastikan body full height */
+            overflow: hidden; /* Hilangkan scrollbar di body */
+        }
+
+        #boot-sequence, #login-section {
+            height: 100vh; /* Tinggi sama dengan viewport */
+            width: 100%;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box; /* Biar padding nggak nambah dimensi */
+            overflow-y: hidden; /* Hilangkan scrollbar internal */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center konten secara vertikal */
+            align-items: center; /* Center konten secara horizontal */
+        }
+
+        #boot-text {
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-box, .signup-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 300px; /* Batasi lebar form */
+        }
+    </style>
 </head>
 <body class="theme-dos">
     <div id="boot-sequence" class="boot-sequence">
