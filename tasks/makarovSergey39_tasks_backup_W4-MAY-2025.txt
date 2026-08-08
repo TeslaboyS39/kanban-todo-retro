@@ -1,0 +1,96 @@
+[
+  {
+    "id": 1746111627089,
+    "title": "audit keuangan april 2025",
+    "description": "audit keuangan april 2025 di excel",
+    "urgency": "middle",
+    "category": "life management",
+    "deadline": "2025-05-02",
+    "status": "completed",
+    "createdAt": "2025-05-01T15:00:27.090Z",
+    "statusChangedAt": "2025-05-01T18:47:38.848Z",
+    "completedAt": "2025-05-01T18:47:38.848Z"
+  },
+  {
+    "id": 1746111692503,
+    "title": "Cari kartu emoney maybank",
+    "description": "harusnya nyelip di dalam kamar, penting u/ masuk pondok gede, dll",
+    "urgency": "middle",
+    "category": "misc",
+    "deadline": "2025-05-04",
+    "status": "completed",
+    "createdAt": "2025-05-01T15:01:32.503Z",
+    "statusChangedAt": "2025-05-05T13:46:58.365Z",
+    "completedAt": "2025-05-03T13:43:52.744Z"
+  },
+  {
+    "id": 1746945297882,
+    "title": "Servis Jam Tangan",
+    "description": "di PD Gede",
+    "urgency": "low",
+    "category": "Service",
+    "deadline": "2025-05-12",
+    "status": "inprogress",
+    "createdAt": "2025-05-11T06:34:57.882Z",
+    "statusChangedAt": "2025-05-11T06:53:48.388Z",
+    "completedAt": "2025-05-11T06:53:46.898Z"
+  },
+  {
+    "id": 1746945341578,
+    "title": "Servis 2nd Monitor",
+    "description": "Coba di sasak deket tambal ban",
+    "urgency": "middle",
+    "category": "Service",
+    "deadline": "2025-05-12",
+    "status": "inprogress",
+    "createdAt": "2025-05-11T06:35:41.578Z",
+    "statusChangedAt": "2025-06-01T16:54:16.351Z",
+    "completedAt": "2025-05-11T06:53:49.987Z"
+  },
+  {
+    "id": 1746945387410,
+    "title": "Servis Sepatu Kulit",
+    "description": "Servis tas selempang sama sepatu kulit",
+    "urgency": "high",
+    "category": "Service",
+    "deadline": "2025-05-11",
+    "status": "completed",
+    "createdAt": "2025-05-11T06:36:27.410Z",
+    "statusChangedAt": "2025-05-24T04:47:21.716Z",
+    "completedAt": "2025-05-11T06:53:55.590Z"
+  },
+  {
+    "id": 1746945538554,
+    "title": "Bikin air filtering sistem",
+    "description": "buat laptop",
+    "urgency": "low",
+    "category": "Damage Mitigation",
+    "deadline": "2025-05-18",
+    "status": "todo",
+    "createdAt": "2025-05-11T06:38:58.554Z",
+    "statusChangedAt": "2025-05-11T06:38:58.554Z"
+  },
+  {
+    "id": 1746945625377,
+    "title": "Beli sepatu",
+    "description": "Untuk serep kerja",
+    "urgency": "low",
+    "category": "Work related",
+    "deadline": "2025-05-18",
+    "status": "todo",
+    "createdAt": "2025-05-11T06:40:25.377Z",
+    "statusChangedAt": "2025-05-11T06:40:25.377Z"
+  },
+  {
+    "id": 1746945698601,
+    "title": "Ke Rojak",
+    "description": "Servis celana",
+    "urgency": "middle",
+    "category": "Service",
+    "deadline": "2025-05-12",
+    "status": "completed",
+    "createdAt": "2025-05-11T06:41:38.601Z",
+    "statusChangedAt": "2025-05-24T04:47:24.238Z",
+    "completedAt": "2025-05-24T04:47:24.238Z"
+  }
+]
