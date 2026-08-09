@@ -8,6 +8,19 @@
     text-align: center;
 }
 
+.login-box form, .signup-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+.form-error {
+    min-height: 1.2em;
+    color: #ff4444;
+    font-family: 'VCR OSD Mono', monospace;
+    font-size: 0.9em;
+}
+
 .login-box, .signup-box {
     background-color: #000000;
     border: 2px solid #00ff00;
@@ -71,6 +84,215 @@ body {
     font-family: 'VCR OSD Mono', monospace; /* Default font for the entire app */
 }
 
+/* Sidebar layout (structure only — colors are set per-theme below) */
+/* Scoped to pages with .app-layout (main.html) so index.html's login body is untouched */
+body:has(.app-layout) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.menu-bar {
+    flex-shrink: 0;
+}
+.app-layout {
+    display: flex;
+    align-items: stretch; /* sidebar stretches to match main-content's height */
+    flex: 1;
+}
+.sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    transition: width 0.2s ease;
+    overflow: hidden;
+}
+.sidebar.collapsed {
+    width: 36px;
+}
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+.sidebar.collapsed .sidebar-title,
+.sidebar.collapsed .topic-list,
+.sidebar.collapsed .add-topic-form {
+    display: none;
+}
+.sidebar-toggle {
+    cursor: pointer;
+    font-family: 'VCR OSD Mono', monospace;
+    padding: 2px 6px;
+}
+.topic-list {
+    padding: 0 5px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+.topic-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 8px 10px;
+    margin-bottom: 4px;
+}
+.topic-name {
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+}
+.topic-name-edit {
+    flex: 1;
+    min-width: 0;
+    font-family: 'VCR OSD Mono', monospace;
+    padding: 2px 4px;
+}
+.topic-actions {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+}
+.topic-action-btn {
+    cursor: pointer;
+    font-family: 'VCR OSD Mono', monospace;
+    font-size: 0.85em;
+    line-height: 1;
+    padding: 2px 5px;
+    background: transparent;
+}
+.add-topic-form {
+    display: flex;
+    gap: 5px;
+    padding: 10px 5px;
+}
+.add-topic-form input {
+    flex: 1;
+    min-width: 0;
+}
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+.new-category-box {
+    display: flex;
+    gap: 5px;
+    width: 90%;
+    margin: 5px auto;
+}
+.new-category-box input {
+    flex: 1;
+    min-width: 0;
+}
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.settings-menu .dropdown {
+    min-width: 260px;
+}
+.dropdown-divider {
+    height: 1px;
+    margin: 8px 0;
+    opacity: 0.4;
+}
+.dropdown-section-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+.storage-path {
+    display: block;
+    font-size: 0.8em;
+    word-break: break-all;
+    margin-bottom: 6px;
+}
+.storage-actions {
+    gap: 6px;
+}
+.storage-actions button {
+    flex: 1;
+    font-family: 'VCR OSD Mono', monospace;
+    cursor: pointer;
+    padding: 4px 6px;
+    font-size: 0.8em;
+}
+.categories-topic-label {
+    margin: 0 0 15px;
+}
+.categories-page-list {
+    max-width: 500px;
+}
+.categories-add-form {
+    max-width: 500px;
+}
+.card.drag-over-before {
+    box-shadow: inset 0 3px 0 0 #ff9900;
+}
+.card.drag-over-after {
+    box-shadow: inset 0 -3px 0 0 #ff9900;
+}
+.task-filter-bar {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 0 15px;
+}
+.task-filter-bar input,
+.task-filter-bar select {
+    font-family: 'VCR OSD Mono', monospace;
+    padding: 5px;
+}
+.task-filter-bar input {
+    flex: 1;
+    min-width: 160px;
+    max-width: 300px;
+}
+.stats-table-container {
+    margin-top: 20px;
+}
+.stats-table-scroll {
+    max-height: 420px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+#stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'VCR OSD Mono', monospace;
+}
+#stats-table th {
+    position: sticky;
+    top: 0;
+}
+#stats-table th, #stats-table td {
+    padding: 6px 10px;
+    text-align: left;
+    white-space: nowrap;
+}
+.stats-table-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 0;
+    font-family: 'VCR OSD Mono', monospace;
+}
+.stats-table-pagination button {
+    cursor: pointer;
+    font-family: 'VCR OSD Mono', monospace;
+    padding: 4px 10px;
+}
+.stats-table-pagination button:disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+
 /* Windows 95 Theme (default) */
 .theme-windows95 {
     background-color: #c0c0c0;
@@ -98,10 +320,14 @@ body {
     font-family: 'VCR OSD Mono', monospace;
     margin: 0 5px;
 }
-.theme-windows95 .user-menu {
+.theme-windows95 .settings-menu {
     margin-left: auto;
     position: relative;
 }
+.theme-windows95 .user-menu {
+    position: relative;
+}
+.theme-windows95 .settings-menu:hover .dropdown,
 .theme-windows95 .user-menu:hover .dropdown {
     display: block;
 }
@@ -110,8 +336,28 @@ body {
     position: absolute;
     right: 0;
     background-color: #ffffff;
+    color: #000080; /* root fix: any text added inside .dropdown must be readable
+                        on this theme's *white* bg — the other 2 themes are dark,
+                        so relying on inherited color (white, from .menu-bar) only
+                        breaks here. See .learnings/LEARNINGS.md */
     border: 2px solid #000080;
     padding: 5px;
+    z-index: 10;
+}
+.theme-windows95 .dropdown-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #000080;
+    white-space: nowrap;
+}
+.theme-windows95 .dropdown-divider {
+    background-color: #000080;
+}
+.theme-windows95 .storage-actions button {
+    background-color: #008080;
+    color: #ffffff;
+    border: 2px solid #000080;
 }
 .theme-windows95 .section {
     padding: 20px;
@@ -228,6 +474,12 @@ body {
     font-family: 'VCR OSD Mono', monospace;
     color: #000080;
 }
+.theme-windows95 .task-filter-bar input,
+.theme-windows95 .task-filter-bar select {
+    border: 2px solid #000080;
+    background-color: #ffffff;
+    color: #000080;
+}
 .theme-windows95 #theme-selector {
     width: 120px;
     padding: 5px;
@@ -240,6 +492,90 @@ body {
 .theme-windows95 canvas {
     max-width: 100%;
     max-height: 250px;
+}
+.theme-windows95 .sidebar {
+    background-color: #008080;
+    border-right: 2px solid #000080;
+    border-top: 3px solid #000080;
+}
+.theme-windows95 .sidebar-title {
+    color: #ffffff;
+    font-weight: bold;
+}
+.theme-windows95 .sidebar-toggle {
+    background-color: #ffffff;
+    color: #000080;
+    border: 2px solid #000080;
+}
+.theme-windows95 .topic-item {
+    background-color: #ffffff;
+    color: #000080;
+    border: 1px solid #000080;
+}
+.theme-windows95 .topic-item:hover {
+    background-color: #000080;
+    color: #ffffff;
+}
+.theme-windows95 .topic-item.active {
+    background-color: #c9c94f;
+    color: #000080;
+    font-weight: bold;
+}
+.theme-windows95 .topic-action-btn {
+    color: inherit;
+    border: 1px solid currentColor;
+}
+.theme-windows95 .topic-action-btn:hover {
+    background-color: #c9c94f;
+    color: #000080;
+}
+.theme-windows95 .topic-name-edit {
+    background-color: #ffffff;
+    color: #000080;
+    border: 1px solid #000080;
+}
+.theme-windows95 .add-topic-form input {
+    padding: 4px;
+    border: 2px solid #000080;
+    font-family: 'VCR OSD Mono', monospace;
+}
+.theme-windows95 .add-topic-form button {
+    background-color: #ffffff;
+    color: #000080;
+    border: 2px solid #000080;
+    cursor: pointer;
+    font-family: 'VCR OSD Mono', monospace;
+}
+.theme-windows95 .new-category-box input {
+    padding: 5px;
+    border: 2px solid #000080;
+    font-family: 'VCR OSD Mono', monospace;
+}
+.theme-windows95 .new-category-box button {
+    background-color: #008080;
+    color: #ffffff;
+    border: 2px solid #000080;
+    cursor: pointer;
+}
+.theme-windows95 #stats-table {
+    background-color: #ffffff;
+    border: 2px solid #000080;
+}
+.theme-windows95 #stats-table th {
+    background-color: #008080;
+    color: #ffffff;
+}
+.theme-windows95 #stats-table td {
+    border-top: 1px solid #000080;
+}
+.theme-windows95 .timeliness-late { color: #a83232; font-weight: bold; }
+.theme-windows95 .timeliness-early { color: #2a7a2a; font-weight: bold; }
+.theme-windows95 .timeliness-ontime { color: #000080; }
+.theme-windows95 .stats-table-pagination { color: #000080; }
+.theme-windows95 .stats-table-pagination button {
+    background-color: #008080;
+    color: #ffffff;
+    border: 2px solid #000080;
 }
 
 /* DOS Theme */
@@ -271,10 +607,14 @@ body {
     font-family: 'VCR OSD Mono', monospace;
     margin: 0 5px;
 }
-.theme-dos .user-menu {
+.theme-dos .settings-menu {
     margin-left: auto;
     position: relative;
 }
+.theme-dos .user-menu {
+    position: relative;
+}
+.theme-dos .settings-menu:hover .dropdown,
 .theme-dos .user-menu:hover .dropdown {
     display: block;
 }
@@ -286,6 +626,21 @@ body {
     border: 2px solid #00ff00;
     padding: 5px;
     color: #00ff00;
+    z-index: 10;
+}
+.theme-dos .dropdown-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+.theme-dos .dropdown-divider {
+    background-color: #00ff00;
+}
+.theme-dos .storage-actions button {
+    background-color: #000000;
+    color: #00ff00;
+    border: 2px solid #00ff00;
 }
 .theme-dos .section {
     padding: 20px;
@@ -420,6 +775,12 @@ body {
     color: #00ff00;
     font-family: 'VCR OSD Mono', monospace;
 }
+.theme-dos .task-filter-bar input,
+.theme-dos .task-filter-bar select {
+    border: 2px solid #00ff00;
+    background-color: #000000;
+    color: #00ff00;
+}
 .theme-dos #theme-selector {
     width: 120px;
     padding: 5px;
@@ -432,6 +793,94 @@ body {
 .theme-dos canvas {
     max-width: 100%;
     max-height: 250px;
+}
+.theme-dos .sidebar {
+    background-color: #000000;
+    border-right: 2px solid #00ff00;
+    border-top: 3px solid #00ff00;
+}
+.theme-dos .sidebar-title {
+    color: #00ff00;
+    font-weight: bold;
+}
+.theme-dos .sidebar-toggle {
+    background-color: #000000;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+}
+.theme-dos .topic-item {
+    background-color: #000000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+}
+.theme-dos .topic-item:hover {
+    background-color: #00ff00;
+    color: #000000;
+}
+.theme-dos .topic-item.active {
+    background-color: #006600;
+    color: #00ff00;
+    font-weight: bold;
+}
+.theme-dos .topic-action-btn {
+    color: inherit;
+    border: 1px solid currentColor;
+}
+.theme-dos .topic-action-btn:hover {
+    background-color: #003300;
+}
+.theme-dos .topic-name-edit {
+    background-color: #000000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+}
+.theme-dos .add-topic-form input {
+    padding: 4px;
+    border: 2px solid #00ff00;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'VCR OSD Mono', monospace;
+}
+.theme-dos .add-topic-form button {
+    background-color: #000000;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    cursor: pointer;
+    font-family: 'VCR OSD Mono', monospace;
+}
+.theme-dos .new-category-box input {
+    padding: 5px;
+    border: 2px solid #00ff00;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'VCR OSD Mono', monospace;
+}
+.theme-dos .new-category-box button {
+    background-color: #000000;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    cursor: pointer;
+}
+.theme-dos #stats-table {
+    background-color: #000000;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+}
+.theme-dos #stats-table th {
+    background-color: #000000;
+    border-bottom: 2px solid #00ff00;
+}
+.theme-dos #stats-table td {
+    border-top: 1px solid #003300;
+}
+.theme-dos .timeliness-late { color: #ff0000; font-weight: bold; }
+.theme-dos .timeliness-early { color: #00ffff; font-weight: bold; }
+.theme-dos .timeliness-ontime { color: #00ff00; }
+.theme-dos .stats-table-pagination { color: #00ff00; }
+.theme-dos .stats-table-pagination button {
+    background-color: #000000;
+    color: #00ff00;
+    border: 2px solid #00ff00;
 }
 
 /* VGA Theme */
@@ -461,10 +910,14 @@ body {
     font-family: 'VCR OSD Mono', monospace;
     margin: 0 5px;
 }
-.theme-vga .user-menu {
+.theme-vga .settings-menu {
     margin-left: auto;
     position: relative;
 }
+.theme-vga .user-menu {
+    position: relative;
+}
+.theme-vga .settings-menu:hover .dropdown,
 .theme-vga .user-menu:hover .dropdown {
     display: block;
 }
@@ -476,6 +929,21 @@ body {
     border: 2px solid #ffffff;
     padding: 5px;
     color: #ffffff;
+    z-index: 10;
+}
+.theme-vga .dropdown-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+.theme-vga .dropdown-divider {
+    background-color: #ffffff;
+}
+.theme-vga .storage-actions button {
+    background-color: #000080;
+    color: #ffffff;
+    border: 2px solid #ffffff;
 }
 .theme-vga .section {
     padding: 20px;
@@ -595,6 +1063,12 @@ body {
     color: #ffffff;
     font-family: 'VCR OSD Mono', monospace;
 }
+.theme-vga .task-filter-bar input,
+.theme-vga .task-filter-bar select {
+    border: 2px solid #ffffff;
+    background-color: #000000;
+    color: #ffffff;
+}
 .theme-vga #theme-selector {
     width: 120px;
     padding: 5px;
@@ -607,6 +1081,94 @@ body {
 .theme-vga canvas {
     max-width: 100%;
     max-height: 250px;
+}
+.theme-vga .sidebar {
+    background-color: #000080;
+    border-right: 2px solid #ffffff;
+    border-top: 3px solid #ffffff;
+}
+.theme-vga .sidebar-title {
+    color: #ffffff;
+    font-weight: bold;
+}
+.theme-vga .sidebar-toggle {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+.theme-vga .topic-item {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+.theme-vga .topic-item:hover {
+    background-color: #0000ff;
+}
+.theme-vga .topic-item.active {
+    background-color: #ffffff;
+    color: #000080;
+    font-weight: bold;
+}
+.theme-vga .topic-action-btn {
+    color: inherit;
+    border: 1px solid currentColor;
+}
+.theme-vga .topic-action-btn:hover {
+    background-color: #0000ff;
+    color: #ffffff;
+}
+.theme-vga .topic-name-edit {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+.theme-vga .add-topic-form input {
+    padding: 4px;
+    border: 2px solid #ffffff;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'VCR OSD Mono', monospace;
+}
+.theme-vga .add-topic-form button {
+    background-color: #000080;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+    font-family: 'VCR OSD Mono', monospace;
+}
+.theme-vga .new-category-box input {
+    padding: 5px;
+    border: 2px solid #ffffff;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'VCR OSD Mono', monospace;
+}
+.theme-vga .new-category-box button {
+    background-color: #000080;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+}
+.theme-vga #stats-table {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+.theme-vga #stats-table th {
+    background-color: #000000;
+    border-bottom: 2px solid #ffffff;
+}
+.theme-vga #stats-table td {
+    border-top: 1px solid #444444;
+}
+.theme-vga .timeliness-late { color: #ff0000; font-weight: bold; }
+.theme-vga .timeliness-early { color: #00ffff; font-weight: bold; }
+.theme-vga .timeliness-ontime { color: #00ff00; }
+.theme-vga .stats-table-pagination { color: #ffffff; }
+.theme-vga .stats-table-pagination button {
+    background-color: #000080;
+    color: #ffffff;
+    border: 2px solid #ffffff;
 }
 
 /* Floppy Disk Animation */

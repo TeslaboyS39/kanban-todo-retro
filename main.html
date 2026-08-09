@@ -10,12 +10,27 @@
     <div class="menu-bar">
         <div class="menu-item" onclick="showSection('kanban')">Kanban</div>
         <div class="menu-item" onclick="showSection('stats')">Statistics</div>
-        <span class="theme-label">Theme:</span>
-        <select id="theme-selector" onchange="changeTheme()">
-            <option value="theme-windows95">Windows 95</option>
-            <option value="theme-dos">DOS</option>
-            <option value="theme-vga">VGA</option>
-        </select>
+        <div class="menu-item" onclick="showSection('categories')">Categories</div>
+        <div class="settings-menu">
+            <div class="menu-item">Settings</div>
+            <div class="dropdown">
+                <div class="dropdown-row">
+                    <span class="theme-label">Theme:</span>
+                    <select id="theme-selector" onchange="changeTheme()">
+                        <option value="theme-windows95">Windows 95</option>
+                        <option value="theme-dos">DOS</option>
+                        <option value="theme-vga">VGA</option>
+                    </select>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-section-title">Storage</div>
+                <span id="storage-path-display" class="storage-path">Loading...</span>
+                <div class="dropdown-row storage-actions">
+                    <button type="button" onclick="openStorageFolder()">Open Folder</button>
+                    <button type="button" onclick="copyStoragePath()">Copy Path</button>
+                </div>
+            </div>
+        </div>
         <div class="user-menu">
             <div class="menu-item">User: <span id="username-display"></span></div>
             <div class="dropdown">
@@ -24,48 +39,110 @@
         </div>
     </div>
 
-    <div id="kanban-section" class="section">
-        <div class="button-container">
-            <div class="add-task-btn" onclick="openTaskModal()">Add Task</div>
-            <div class="export-btn" onclick="exportTasks()">Export Tasks</div>
-        </div>
-        <div class="board">
-            <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <h3>To Do</h3>
-                <div class="task-list"></div>
+    <div class="app-layout">
+        <div id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <span class="sidebar-title">Topics</span>
+                <button class="sidebar-toggle" onclick="toggleSidebar()" id="sidebar-toggle-btn" title="Collapse sidebar">&laquo;</button>
             </div>
-            <div class="column" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <h3>In Progress</h3>
-                <div class="task-list"></div>
-            </div>
-            <div class="column" id="completed" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <h3>Completed</h3>
-                <div class="task-list"></div>
-            </div>
-            <div class="column" id="halt" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <h3>Halted/Failed</h3>
-                <div class="task-list"></div>
+            <div id="topic-list" class="topic-list"></div>
+            <div class="add-topic-form">
+                <input type="text" id="new-topic-name" placeholder="New topic...">
+                <button onclick="addTopic()">+ Add</button>
             </div>
         </div>
-    </div>
 
-    <div id="stats-section" class="section" style="display: none;">
-        <div class="stats-container">
-            <div class="chart-box">
-                <h3>Task Status</h3>
-                <canvas id="statusChart"></canvas>
+        <div class="main-content">
+            <div id="kanban-section" class="section">
+                <div class="button-container">
+                    <div class="add-task-btn" onclick="openTaskModal()">Add Task</div>
+                    <div class="export-btn" onclick="exportTasks()">Export Tasks</div>
+                </div>
+                <div class="task-filter-bar">
+                    <input type="text" id="task-search" placeholder="Search tasks..." oninput="filterTasks()">
+                    <select id="task-filter-category" onchange="filterTasks()">
+                        <option value="">All categories</option>
+                    </select>
+                    <select id="task-filter-urgency" onchange="filterTasks()">
+                        <option value="">All priorities</option>
+                        <option value="low">Low</option>
+                        <option value="middle">Middle</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="board">
+                    <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <h3>To Do</h3>
+                        <div class="task-list"></div>
+                    </div>
+                    <div class="column" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <h3>In Progress</h3>
+                        <div class="task-list"></div>
+                    </div>
+                    <div class="column" id="completed" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <h3>Completed</h3>
+                        <div class="task-list"></div>
+                    </div>
+                    <div class="column" id="halt" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <h3>Halted/Failed</h3>
+                        <div class="task-list"></div>
+                    </div>
+                </div>
             </div>
-            <div class="chart-box">
-                <h3>Task Categories</h3>
-                <canvas id="categoryChart"></canvas>
+
+            <div id="stats-section" class="section" style="display: none;">
+                <div class="stats-container">
+                    <div class="chart-box">
+                        <h3>Task Status</h3>
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                    <div class="chart-box">
+                        <h3>Task Categories</h3>
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                    <div class="chart-box">
+                        <select id="status-filter" onchange="loadStats()">
+                            <option value="completed">Completed</option>
+                            <option value="inprogress">In Progress</option>
+                            <option value="halt">Halted/Failed</option>
+                        </select>
+                        <canvas id="completedChart"></canvas>
+                    </div>
+                </div>
+                <div class="stats-table-container">
+                    <h3>Task List</h3>
+                    <div class="stats-table-scroll">
+                        <table id="stats-table">
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Category</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                    <th>Created At</th>
+                                    <th>Est. Finish</th>
+                                    <th>Completed At</th>
+                                    <th>Timeliness</th>
+                                </tr>
+                            </thead>
+                            <tbody id="stats-table-body"></tbody>
+                        </table>
+                    </div>
+                    <div class="stats-table-pagination">
+                        <button type="button" id="stats-table-prev" onclick="statsTablePrevPage()">&laquo; Prev</button>
+                        <span id="stats-table-page-info"></span>
+                        <button type="button" id="stats-table-next" onclick="statsTableNextPage()">Next &raquo;</button>
+                    </div>
+                </div>
             </div>
-            <div class="chart-box">
-                <select id="status-filter" onchange="loadStats()">
-                    <option value="completed">Completed</option>
-                    <option value="inprogress">In Progress</option>
-                    <option value="halt">Halted/Failed</option>
-                </select>
-                <canvas id="completedChart"></canvas>
+
+            <div id="categories-section" class="section" style="display: none;">
+                <h2 id="categories-topic-label" class="categories-topic-label"></h2>
+                <div id="categories-page-list" class="topic-list categories-page-list"></div>
+                <div class="add-topic-form categories-add-form">
+                    <input type="text" id="new-category-name" placeholder="New category...">
+                    <button type="button" onclick="addCategoryToPage()">+ Add</button>
+                </div>
             </div>
         </div>
     </div>
@@ -75,12 +152,22 @@
             <h2>Add Task</h2>
             <input type="text" id="title" placeholder="Title">
             <textarea id="description" placeholder="Description"></textarea>
+            <label for="urgency">Priority:</label>
             <select id="urgency">
                 <option value="low">Low</option>
                 <option value="middle">Middle</option>
                 <option value="high">High</option>
             </select>
-            <input type="text" id="category" placeholder="Category">
+            <label for="category">Category:</label>
+            <select id="category" onchange="handleCategorySelect('category')">
+                <option value="">Select category...</option>
+                <option value="__add_new__">+ Add new category...</option>
+            </select>
+            <div id="category-new-box" class="new-category-box" style="display: none;">
+                <input type="text" id="category-new-input" placeholder="New category name">
+                <button type="button" onclick="confirmNewCategory('category')">OK</button>
+            </div>
+            <label for="deadline">Estimated Finish Date:</label>
             <input type="date" id="deadline">
             <button onclick="addTask()">Add</button>
             <button onclick="closeTaskModal()">Cancel</button>
@@ -92,12 +179,22 @@
             <h2>Edit Task</h2>
             <input type="text" id="edit-title" placeholder="Title">
             <textarea id="edit-description" placeholder="Description"></textarea>
+            <label for="edit-urgency">Priority:</label>
             <select id="edit-urgency">
                 <option value="low">Low</option>
                 <option value="middle">Middle</option>
                 <option value="high">High</option>
             </select>
-            <input type="text" id="edit-category" placeholder="Category">
+            <label for="edit-category">Category:</label>
+            <select id="edit-category" onchange="handleCategorySelect('edit-category')">
+                <option value="">Select category...</option>
+                <option value="__add_new__">+ Add new category...</option>
+            </select>
+            <div id="edit-category-new-box" class="new-category-box" style="display: none;">
+                <input type="text" id="edit-category-new-input" placeholder="New category name">
+                <button type="button" onclick="confirmNewCategory('edit-category')">OK</button>
+            </div>
+            <label for="edit-deadline">Estimated Finish Date:</label>
             <input type="date" id="edit-deadline">
             <button onclick="saveEditedTask()">Save</button>
             <button onclick="closeEditTaskModal()">Cancel</button>
