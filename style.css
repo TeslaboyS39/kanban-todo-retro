@@ -316,7 +316,7 @@ body:has(.app-layout) {
     background-color: #000080;
 }
 .theme-windows95 .theme-label {
-    color: #ffffff;
+    color: #000000;
     font-family: 'VCR OSD Mono', monospace;
     margin: 0 5px;
 }
